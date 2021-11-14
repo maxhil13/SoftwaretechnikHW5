@@ -9,14 +9,19 @@ public class Exam {
     public Vector<Student> students;
     public Vector<TA> tas;
 
-    public Exam(Course course, Vector<Question> questions, Vector<TA> tas) {
+    public Exam(Course course, Vector<Question> questions, Vector<TA> tas, int max_value) {
         this.course = course;
         this.questions = questions;
         this.tas = tas;
+        this.max_value = max_value;
     }
 
     public void register(Student student) {
-        this.students.add(student);
+        if (students.size() <= max_value) {
+            this.students.add(student);
+        } else {
+            System.err.println("Student couldn't be added to the course. This course is full.");
+        }
     }
 
     public void addQuestion(int id, String task, int value) {
